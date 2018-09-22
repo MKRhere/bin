@@ -1,0 +1,143 @@
+body {
+
+	padding: 0;
+	margin: 0;
+	background: #111;
+
+}
+
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+.container {
+
+	display: flex;
+	height: 95vh;
+	padding: 0;
+	margin: 0;
+	flex-direction: row-reverse;
+
+}
+
+.controls {
+
+	flex: 1;
+
+}
+
+.content {
+
+	flex: 9;
+	height: 100%;
+
+}
+
+.textarea {
+
+	display: block;
+	outline: 0px solid transparent;
+	background: #000;
+	height: 100%;
+	width: 100%;
+	padding: 3em;
+	overflow-x: auto;
+	overflow-y: auto;
+	color: #EEE;
+	font-family: monospace;
+	border: none;
+	resize: none;
+	-moz-tab-size : 2;
+	-o-tab-size : 2;
+	tab-size : 2;
+
+}
+
+.submit {
+
+	display: block;
+	width: 100%;
+	margin: 0.5em 0.5em 0.25em;
+	padding: 1em;
+	background: #222;
+	border: #222;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: #EEE;
+
+}
+
+.submit:hover {
+
+	cursor: pointer;
+
+}
+
+footer {
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	min-height: 32px;
+	height: 5vh;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100vw;
+	background: #222;
+
+}
+
+.footer-text {
+
+	color: #AAA;
+	margin: 0 0.5em;
+
+}
+
+.footer-text a {
+
+	color: #AAA;
+	text-decoration: none;
+	font-weight: bold;
+	margin: 0 0.5em;
+
+}
+
+.footer-github {
+
+	float: right;
+	color: #AAA;
+	fill: currentColor;
+	margin: 0 1.5em 0 0.4em;
+
+}
+
+@media screen and (max-width: 720px) {
+
+	.controls {
+	
+		flex: 1;
+	
+	}
+	
+	.content {
+	
+		flex: 5;
+		height: 100%;
+	
+	}
+
+	.footer-text {
+
+		display: none;
+
+	}
+
+}
