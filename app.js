@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const mongoose = require('./middleware/mongoose');
 const render = require('./middleware/render');
@@ -13,8 +12,8 @@ const fork = require('./routes/fork');
 
 app.use(helmet());
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json());
 
 app.use(mongoose());
 app.use(render());
@@ -26,5 +25,5 @@ app.get('/~:id', getSnippet);
 app.get('/', home);
 
 
-const PORT = process.env.PORT || 1998;
+const PORT = process.env.BIN_PORT || 1998;
 app.listen(PORT, () => console.log('Listening on port', PORT));

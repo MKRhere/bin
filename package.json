@@ -1,33 +1,33 @@
 {
-  "name": "@codefeathers/bin",
-  "version": "0.1.0",
-  "description": "A tiny, sensible hastebin alternative",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codefeathers/bin.git"
-  },
-  "keywords": [
-    "hastebin",
-    "pastebin",
-    "paste",
-    "notes"
-  ],
-  "author": "Muthu Kumar <@MKRhere> (https://mkr.pw)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/codefeathers/bin/issues"
-  },
-  "homepage": "https://github.com/codefeathers/bin#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "helmet": "^3.13.0",
-    "mithril": "^1.1.6",
-    "mithril-node-render": "^2.3.0",
-    "mongoose": "^5.2.17"
-  }
+	"name": "@codefeathers/bin",
+	"version": "0.1.0",
+	"description": "A tiny, sensible hastebin alternative",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/codefeathers/bin.git"
+	},
+	"keywords": [
+		"hastebin",
+		"pastebin",
+		"paste",
+		"notes"
+	],
+	"author": "Muthu Kumar <@MKRhere> (https://mkr.pw)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/codefeathers/bin/issues"
+	},
+	"homepage": "https://github.com/codefeathers/bin#readme",
+	"dependencies": {
+		"express": "^4.16.3",
+		"helmet": "^3.13.0",
+		"mithril": "^1.1.6",
+		"mithril-node-render": "^2.3.0",
+		"mongoose": "^5.2.17"
+	}
 }
