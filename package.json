@@ -1,6 +1,6 @@
 {
 	"name": "@codefeathers/bin",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "A tiny, sensible hastebin alternative",
 	"main": "app.js",
 	"scripts": {
@@ -26,6 +26,7 @@
 	"dependencies": {
 		"express": "^4.16.3",
 		"helmet": "^3.13.0",
+		"highlight.js": "^9.12.0",
 		"mithril": "^1.1.6",
 		"mithril-node-render": "^2.3.0",
 		"mongoose": "^5.2.17"

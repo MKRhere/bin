@@ -1,6 +1,7 @@
 dependencies:
   express: 4.16.3
   helmet: 3.13.0
+  highlight.js: 9.12.0
   mithril: 1.1.6
   mithril-node-render: 2.3.0
   mongoose: 5.2.17
@@ -271,6 +272,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-SoWtZYgfYoV/xwr3F0oRhNzM4ys=
+  /highlight.js/9.12.0:
+    dev: false
+    resolution:
+      integrity: sha1-5tnb5Xy+/mB1HwKvM2GVhwyQwB4=
   /hpkp/2.0.0:
     dev: false
     resolution:
@@ -660,6 +665,7 @@ shrinkwrapVersion: 3
 specifiers:
   express: ^4.16.3
   helmet: ^3.13.0
+  highlight.js: ^9.12.0
   mithril: ^1.1.6
   mithril-node-render: ^2.3.0
   mongoose: ^5.2.17
