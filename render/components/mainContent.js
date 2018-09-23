@@ -50,7 +50,7 @@ module.exports = (m, { location, content, language }) => {
 					{ href: "/", },
 					[
 						"New snippet",
-						m(".helper", "Ctrl + Shift + N")
+						m(".helper", "Ctrl + B")
 					],
 				),
 				m(
