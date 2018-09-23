@@ -29,7 +29,7 @@ pre, code {
 
 }
 
-pre, span {
+pre {
 	width: 100%;
 	white-space: pre;
 	word-wrap: normal;
@@ -47,7 +47,7 @@ pre, span {
 
 	flex: 10;
 	max-height: 100%;
-	max-width: 100%;
+	max-width: 90%;
 	overflow-wrap: break-word;
 
 }
