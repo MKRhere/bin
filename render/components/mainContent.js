@@ -44,10 +44,11 @@ module.exports = (m, { location, content, language }) => {
 				)
 			),
 			m(
-				".controls",
+				"#sidebar.controls",
+				{ style: "display: block;" },
 				m(
 					"a#newButton.submit",
-					{ href: "/", },
+					{ href: "/" },
 					[
 						"New snippet",
 						m(".helper", "Ctrl + B")

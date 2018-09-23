@@ -1,5 +1,9 @@
 module.exports = m => {
 	return m("footer", [
+		m(
+			"code.footer-text.footer-keybindings",
+			"Ctrl+Alt+T: Toggle Sidebar"
+		),
 		m("code.footer-text", "mkr/bin |"),
 		m("code.footer-text", [
 			"Built by Muthu Kumar",

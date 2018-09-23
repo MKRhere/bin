@@ -1,6 +1,29 @@
+var toggle = function (el) {
+
+	el.style.display === 'block'
+		? el.style.display = 'none'
+		: el.style.display = 'block';
+
+};
+
+var setViewportSize = function () {
+
+	// Set the --vh and --vw custom property to the root of the document
+	const vh = window.innerHeight * 0.01;
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+	const vw = window.innerWidth * 0.01;
+	document.documentElement.style.setProperty('--vw', `${vw}px`);
+
+};
+
 window.addEventListener(
 	"load",
 	function() {
+
+		setViewportSize();
+		window.addEventListener('resize', function () {
+			setViewportSize();
+		});
 
 		/* Can't bother: https://stackoverflow.com/a/18303822 */
 		document
@@ -30,13 +53,19 @@ window.addEventListener(
 
 		document.addEventListener('keydown', function(e) {
 
-			// Ctrl + Shift + N
-			// Ctrl + B
-			if(e.ctrlKey
-				&& (e.shiftKey && (e.keyCode === 78))
+			if(e.ctrlKey) {
+				// Ctrl + Shift + N
+				// Ctrl + B
+				if ((e.shiftKey && (e.keyCode === 78))
 				|| (e.keyCode === 66)) {
-				e.preventDefault();
-				document.getElementById('newButton').click();
+					e.preventDefault();
+					document.getElementById('newButton').click();
+				}
+				// Ctrl + Alt + T
+				if (e.altKey && e.keyCode === 84) {
+					e.preventDefault();
+					toggle(document.getElementById('sidebar'));
+				}
 			}
 
 		});
