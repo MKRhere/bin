@@ -1,7 +1,7 @@
 const head = require('./components/head');
 const body = require('./components/body');
 
-module.exports = (m, render, { location, content = '' }) => {
+module.exports = (m, render, { location, content = '', language }) => {
 
 	return render(m('html',
 		[
@@ -13,6 +13,7 @@ module.exports = (m, render, { location, content = '' }) => {
 			body(m, {
 				location,
 				content,
+				language
 			})
 		]
 	));

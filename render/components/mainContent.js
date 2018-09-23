@@ -1,5 +1,14 @@
-module.exports = (m, { location, content }) => {
+const hl = require('highlight.js');
+
+module.exports = (m, { location, content, language }) => {
+	language = language && [ language ];
 	const isSnippet = location === 'snippet';
+	const textArea =
+		(isSnippet ? "pre" : "textarea.binEditor")
+			+ "#snippet.textarea"
+			+ (language ? "." + language : "");
+	const highlighted =
+		isSnippet && hl.highlightAuto(((content || "") + "\n\n"), language);
 
 	return m(
 		"form.container",
@@ -10,37 +19,53 @@ module.exports = (m, { location, content }) => {
 			m(
 				".content",
 				m(
-					"textarea#snippet.textarea",
+					textArea,
 					{
 						name: "snippet",
-						class: "text",
 						spellcheck: "false",
+						"data-gramm": "false",
 						...(!isSnippet && { autofocus: "true" }),
 						...(isSnippet && { readOnly: "true" }),
 					},
-					content,
+					isSnippet ? m.trust(highlighted.value) : content
+				)
+			),
+			(isSnippet && 
+				m(
+					'textarea#originalSnippet',
+					{
+						style: "display: none",
+						readOnly: "true",
+						name: "snippet",
+						spellcheck: "false",
+						"data-gramm": "false",
+					},
+					content
 				)
 			),
 			m(
 				".controls",
 				m(
-					"a.submit",
-					{
-						href: "/",
-					},
-					"New snippet",
+					"a#newButton.submit",
+					{ href: "/", },
+					[
+						"New snippet",
+						m(".helper", "Ctrl + Shift + N")
+					],
 				),
 				m(
-					"button.submit",
+					"button#actionButton.submit",
 					{
 						type: "submit",
 						formaction: isSnippet ? "fork" : "/",
 						formenctype: "application/x-www-form-urlencoded",
 						formmethod: "post",
 					},
-					isSnippet ? "Fork!" : "Save!",
+					isSnippet
+						? [ "Fork!", m(".helper", "Ctrl + F") ]
+						: [ "Save!", m(".helper", "Ctrl + S") ],
 				),
-			)
+			),
 		]
 	);
 };
