@@ -17,7 +17,7 @@ module.exports = (m, { location, content, language }) => {
 		},
 		[
 			m(
-				".content",
+				"#main.content",
 				m(
 					textArea,
 					{

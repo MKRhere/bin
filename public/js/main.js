@@ -6,6 +6,23 @@ var toggle = function (el) {
 
 };
 
+var toggleSidebar = function () {
+
+	var sidebar = document.getElementById('sidebar');
+	var content = document.getElementById('main');
+
+	var shown = sidebar.style.display === 'block';
+
+	if (shown) {
+		sidebar.style.display = 'none';
+		content.style.maxWidth = '100%';
+	} else {
+		sidebar.style.display = 'block';
+		content.style.maxWidth = '90%';
+	}
+
+};
+
 var setViewportSize = function () {
 
 	// Set the --vh and --vw custom property to the root of the document
@@ -64,7 +81,7 @@ window.addEventListener(
 				// Ctrl + Alt + T
 				if (e.altKey && e.keyCode === 84) {
 					e.preventDefault();
-					toggle(document.getElementById('sidebar'));
+					toggleSidebar();
 				}
 			}
 
