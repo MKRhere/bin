@@ -70,40 +70,30 @@ window.addEventListener(
 
 		document.addEventListener('keydown', function(e) {
 
-			if(e.ctrlKey) {
-				// Ctrl + Shift + N
-				// Ctrl + B
-				if ((e.shiftKey && (e.keyCode === 78))
-				|| (e.keyCode === 66)) {
+			if(e.ctrlKey && e.altKey) {
+
+				if ((e.keyCode === 78) || (e.keyCode === 65)) {
+					// Ctrl + Alt + {N|A} -> New
 					e.preventDefault();
-					document.getElementById('newButton').click();
-				}
-				// Ctrl + Alt + T
-				if (e.altKey && e.keyCode === 84) {
+					return document.getElementById('newButton').click();
+				} else if (e.keyCode === 32) {
+					// Ctrl + Alt + Space -> Toggle Sidebar
 					e.preventDefault();
-					toggleSidebar();
+					return toggleSidebar();
 				}
-			}
 
-		});
+				const binEditor = document.getElementsByClassName('binEditor')[0];
 
-		const binEditor = document.getElementsByClassName('binEditor')[0];
+				if(binEditor && (e.keyCode === 83)) {
+					// Ctrl + Alt + S -> Save
+					e.preventDefault();
+					return document.getElementById('actionButton').click();
+				} else if (e.keyCode === 70) {
+					// Ctrl + Alt + F -> Fork
+					e.preventDefault();
+					return document.getElementById('actionButton').click();
+				};
 
-		if(binEditor) document.addEventListener('keydown', function(e) {
-
-			// Ctrl + S 
-			if(e.ctrlKey && (e.keyCode === 83)) {
-				e.preventDefault();
-				document.getElementById('actionButton').click();
-			}
-
-		});
-		else document.addEventListener('keydown', function(e) {
-
-			// Ctrl + F
-			if(e.ctrlKey && (e.keyCode === 70)) {
-				e.preventDefault();
-				document.getElementById('actionButton').click();
 			}
 
 		});
