@@ -1,6 +1,6 @@
 {
 	"name": "@codefeathers/bin",
-	"version": "0.2.5",
+	"version": "1.0.0",
 	"description": "A tiny, sensible hastebin alternative",
 	"main": "app.js",
 	"scripts": {
