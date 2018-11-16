@@ -2,7 +2,7 @@ module.exports = m => {
 	return m("footer", [
 		m(
 			"code.footer-text.footer-keybindings",
-			"Ctrl+Alt+Space: Toggle Sidebar"
+			"Alt+Ctrl+Space: Toggle Sidebar"
 		),
 		m("code.footer-text", "mkr/bin |"),
 		m("code.footer-text", [
