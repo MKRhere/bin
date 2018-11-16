@@ -72,6 +72,35 @@ pre {
 
 }
 
+td {
+
+	color: #EEE;
+	padding: 0.3em;
+	padding-left: 1em;
+
+}
+
+td.line-number {
+
+	background: #111;
+	text-align: right;
+
+}
+
+td.line-number:hover {
+
+	background: #222;
+	cursor: pointer;
+
+}
+
+td.line-number::before {
+
+	content: attr(data-line-number);
+	padding-right: 1em;
+
+}
+
 .helper {
 
 	padding: 0.7em;

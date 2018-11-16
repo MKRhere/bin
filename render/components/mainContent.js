@@ -1,4 +1,4 @@
-const hl = require('highlight.js');
+const highlight = require('./highlight');
 
 module.exports = (m, { location, content, language }) => {
 	language = language && [ language ];
@@ -8,13 +8,10 @@ module.exports = (m, { location, content, language }) => {
 			+ "#snippet.textarea"
 			+ (language ? "." + language : "");
 	const highlighted =
-		isSnippet && hl.highlightAuto(((content || "") + "\n\n"), language);
+		isSnippet && (highlight(m, { content, language }));
 
 	return m(
-		"form.container",
-		{
-			name: "codeSnippet",
-		},
+		"form.container", { name: "codeSnippet", },
 		[
 			m(
 				"#main.content",
@@ -27,7 +24,7 @@ module.exports = (m, { location, content, language }) => {
 						...(!isSnippet && { autofocus: "true" }),
 						...(isSnippet && { readOnly: "true" }),
 					},
-					isSnippet ? m.trust(highlighted.value) : content
+					highlighted || content
 				)
 			),
 			(isSnippet && 
@@ -51,7 +48,7 @@ module.exports = (m, { location, content, language }) => {
 					{ href: "/" },
 					[
 						"New snippet",
-						m(".helper", "Ctrl + B")
+						m(".helper", "Alt + Ctrl + N")
 					],
 				),
 				m(
@@ -63,8 +60,8 @@ module.exports = (m, { location, content, language }) => {
 						formmethod: "post",
 					},
 					isSnippet
-						? [ "Fork!", m(".helper", "Ctrl + F") ]
-						: [ "Save!", m(".helper", "Ctrl + S") ],
+						? [ "Fork!", m(".helper", "Alt + Ctrl + F") ]
+						: [ "Save!", m(".helper", "Alt + Ctrl + S") ],
 				),
 			),
 		]

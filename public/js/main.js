@@ -38,8 +38,79 @@ var setViewportSize = function () {
 
 };
 
+function addTabs (e) {
+
+	/* Can't bother: https://stackoverflow.com/a/18303822 */
+	if(e.keyCode === 9) { // tab was pressed
+		// get caret position/selection
+		var start = this.selectionStart;
+		var end = this.selectionEnd;
+
+		var target = e.target;
+		var value = target.value;
+
+		// set textarea value to:
+		// text before caret + tab + text after caret
+		target.value = value.substring(0, start)
+					+ '\t'
+					+ value.substring(end);
+
+		// put caret at right position again (add one for the tab)
+		this.selectionStart = this.selectionEnd = start + 1;
+
+		// prevent the focus lose
+		e.preventDefault();
+	}
+
+}
+
+var keyCodes = {
+
+	new: 78, // N
+	save: 83, // S
+	fork: 70, // F
+	minMode: 32, // Space
+
+}
+
+function handleKeybindings (e) {
+
+	if(e.ctrlKey && e.altKey) {
+
+		if ((e.keyCode === keyCodes.new) || (e.keyCode === 65)) {
+			// Ctrl + Alt + {N|A} -> New
+			e.preventDefault();
+			return document.getElementById('newButton').click();
+		} else if (e.keyCode === keyCodes.minMode) {
+			// Ctrl + Alt + Space -> Toggle Sidebar
+			e.preventDefault();
+			return toggleSidebar();
+		}
+
+		const binEditor = document.getElementsByClassName('binEditor')[0];
+
+		if(binEditor && (e.keyCode === keyCodes.save)) {
+			// Ctrl + Alt + S -> Save
+			e.preventDefault();
+			return document.getElementById('actionButton').click();
+		} else if (e.keyCode === keyCodes.fork) {
+			// Ctrl + Alt + F -> Fork
+			e.preventDefault();
+			return document.getElementById('actionButton').click();
+		};
+
+	}
+
+}
+
+function hashLineNumber (e) {
+
+	window.location.hash = e.target.id;
+
+}
+
 window.addEventListener(
-	"load",
+	'load',
 	function() {
 
 		setViewportSize();
@@ -47,61 +118,16 @@ window.addEventListener(
 			setViewportSize();
 		});
 
-		/* Can't bother: https://stackoverflow.com/a/18303822 */
 		document
-		.querySelector("textarea")
-		.addEventListener('keydown',function(e) {
-			if(e.keyCode === 9) { // tab was pressed
-				// get caret position/selection
-				var start = this.selectionStart;
-				var end = this.selectionEnd;
-		
-				var target = e.target;
-				var value = target.value;
-		
-				// set textarea value to:
-				// text before caret + tab + text after caret
-				target.value = value.substring(0, start)
-							+ "\t"
-							+ value.substring(end);
-		
-				// put caret at right position again (add one for the tab)
-				this.selectionStart = this.selectionEnd = start + 1;
-		
-				// prevent the focus lose
-				e.preventDefault();
-			}
-		}, false);
+			.querySelector('textarea')
+			.addEventListener('keydown', addTabs, false);
 
-		document.addEventListener('keydown', function(e) {
+		Array
+			.from(document.getElementsByClassName('line-number'))
+			.forEach(el => el.addEventListener('click', hashLineNumber));
 
-			if(e.ctrlKey && e.altKey) {
-
-				if ((e.keyCode === 78) || (e.keyCode === 65)) {
-					// Ctrl + Alt + {N|A} -> New
-					e.preventDefault();
-					return document.getElementById('newButton').click();
-				} else if (e.keyCode === 32) {
-					// Ctrl + Alt + Space -> Toggle Sidebar
-					e.preventDefault();
-					return toggleSidebar();
-				}
-
-				const binEditor = document.getElementsByClassName('binEditor')[0];
-
-				if(binEditor && (e.keyCode === 83)) {
-					// Ctrl + Alt + S -> Save
-					e.preventDefault();
-					return document.getElementById('actionButton').click();
-				} else if (e.keyCode === 70) {
-					// Ctrl + Alt + F -> Fork
-					e.preventDefault();
-					return document.getElementById('actionButton').click();
-				};
-
-			}
-
-		});
+		document
+			.addEventListener('keydown', handleKeybindings);
 
 	},
 	false
