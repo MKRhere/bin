@@ -14,6 +14,7 @@ const fork = require('./routes/fork');
 
 app.use(helmet());
 app.use(express.static(__dirname + '/public'));
+app.use('/custom', express.static(__dirname + '/custom'));
 app.use(express.urlencoded({extended: true})); // parse formdata
 app.use(express.json()); // parse JSON requests
 app.use(rawBody());

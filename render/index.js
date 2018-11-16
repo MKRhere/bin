@@ -9,7 +9,7 @@ module.exports = (m, render, { location, content = '', language }) => {
 				title: 'mkr/bin',
 				description: 'Lightweight pastebin alternative',
 				keywords: ['pastebin', 'hastebin', 'notes'],
-				style: '/css/style.css' }),
+				styles: [ '/css/style.css', '/custom/style.css' ] }),
 			body(m, {
 				location,
 				content,

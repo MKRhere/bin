@@ -1,4 +1,4 @@
-module.exports = (m, { title, description, keywords, style }) => {
+module.exports = (m, { title, description, keywords, styles }) => {
 
 	const meta = [
 		{ 'http-equiv': 'Content-Type' },
@@ -17,7 +17,7 @@ module.exports = (m, { title, description, keywords, style }) => {
 	return m('head', [
 		m('title', title),
 		...meta.map(x => m('meta', x)),
-		m('link', { rel: 'stylesheet', href: style })
+		...styles.map(x => m('link', { rel: 'stylesheet', href: x })),
 	]);
 
 };
