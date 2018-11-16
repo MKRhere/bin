@@ -1,7 +1,6 @@
-const router = require('express').Router();
 const render = require('../render');
 
-router.post('/', (req, res) => {
+module.exports = (req, res) => {
 	
 	return render(
 		req.mithril,
@@ -13,6 +12,4 @@ router.post('/', (req, res) => {
 	)
 	.then(html => res.send(html));
 
-});
-
-module.exports = router;
+};

@@ -1,9 +1,10 @@
-const router = require('express').Router();
 const render = require('../render');
 
-router.get('/~:id', (req, res) => {
+module.exports = (req, res) => {
+
 	const { models, mongoose } = req;
 	const [ id, language ] = (req.params.id || '').split('.');
+	const rawMode = Boolean(req.query.raw);
 	return models.snippets.findOne({ _id: mongoose.Types.ObjectId(id) })
 		.then(doc => {
 			if (!doc) {
@@ -12,16 +13,16 @@ router.get('/~:id', (req, res) => {
 					'<code>Nothing here, go <a href="/">back!</a></code>'
 				);
 			}
-			return render(
-				req.mithril,
-				req.render,
-				{
-					location: 'snippet',
-					content: doc.content,
-					language,
-				});
-		})
-		.then(html => res.send(html));
-});
+			if (rawMode) {
+				res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+				res.end(doc.content);
+			}
+			else
+				return render(
+					req.mithril,
+					req.render,
+					{ location: 'snippet', content: doc.content, language, }
+				).then(html => res.send(html));
+		});
 
-module.exports = router;
+};

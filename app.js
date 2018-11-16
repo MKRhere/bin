@@ -1,5 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
+
+const rawBody = require('./middleware/rawBody');
 const mongoose = require('./middleware/mongoose');
 const render = require('./middleware/render');
 
@@ -12,13 +14,14 @@ const fork = require('./routes/fork');
 
 app.use(helmet());
 app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({extended: true})); 
-app.use(express.json());
+app.use(express.urlencoded({extended: true})); // parse formdata
+app.use(express.json()); // parse JSON requests
+app.use(rawBody());
 
 app.use(mongoose());
 app.use(render());
 
-app.use('/fork', fork);
+app.post('/fork', fork);
 app.post('/', createSnippet);
 
 app.get('/~:id', getSnippet);

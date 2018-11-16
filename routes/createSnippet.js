@@ -1,12 +1,11 @@
-const router = require('express').Router();
+module.exports = (req, res) => {
 
-router.post('/', (req, res) => {
-	const content = req.body.snippet;
+	const content = req.rawText || req.body.snippet;
+	console.log(content);
 	if (!content) return res.redirect('/');
 	req.models.snippets.create({ content })
 		.then(doc => {
 			res.redirect(`/~${doc._id}`);
 		});
-});
 
-module.exports = router;
+};
