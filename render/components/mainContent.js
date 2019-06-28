@@ -4,7 +4,7 @@ module.exports = (m, { location, content, language }) => {
 	language = language && [ language ];
 	const isSnippet = location === 'snippet';
 	const textArea =
-		(isSnippet ? "pre" : "textarea.binEditor")
+		(isSnippet ? "code" : "textarea.binEditor")
 			+ "#snippet.textarea"
 			+ (language ? "." + language : "");
 	const highlighted =
@@ -27,7 +27,7 @@ module.exports = (m, { location, content, language }) => {
 					highlighted || content
 				)
 			),
-			(isSnippet && 
+			(isSnippet &&
 				m(
 					'textarea#originalSnippet',
 					{
