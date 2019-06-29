@@ -4,7 +4,20 @@ module.exports = (req, res) => {
 
 	const { models, mongoose } = req;
 	const [ id, language ] = (req.params.id || '').split('.');
-	const rawMode = Boolean(req.query.raw);
+	// Check if raw mode is set OR (useragent has curl AND raw mode is not false)
+	const rawMode =
+		(
+			req.query.raw !== undefined &&
+			req.query.raw !== "0" &&
+			req.query.raw.toLowerCase() !== "false" &&
+			req.query.raw.toLowerCase() !== "n"
+		) ||
+		(
+			req.headers['user-agent'].toLowerCase().includes("curl") &&
+			req.query.raw !== "0" &&
+			req.query.raw.toLowerCase() === "false" &&
+			req.query.raw.toLowerCase() === "n"
+		);
 	return models.snippets.findOne({ _id: mongoose.Types.ObjectId(id) })
 		.then(doc => {
 			if (!doc) {
