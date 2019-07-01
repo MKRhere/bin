@@ -6,10 +6,10 @@ body {
 
 }
 
-* { 
-	-moz-box-sizing: border-box; 
-	-webkit-box-sizing: border-box; 
-	box-sizing: border-box; 
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .container {
@@ -23,13 +23,13 @@ body {
 
 }
 
-pre, code {
+code, #snippet {
 
 	margin: 0;
 
 }
 
-pre {
+.loc, #snippet {
 	width: 100%;
 	white-space: pre;
 	word-wrap: normal;
@@ -84,7 +84,13 @@ td.line-number {
 
 	background: #111;
 	text-align: right;
-
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select:none;
+	user-select: none;
 }
 
 td.line-number:hover {
@@ -98,7 +104,6 @@ td.line-number::before {
 
 	content: attr(data-line-number);
 	padding-right: 1em;
-
 }
 
 .helper {
@@ -184,16 +189,16 @@ footer {
 @media screen and (max-width: 720px) {
 
 	.controls {
-	
+
 		flex: 1;
-	
+
 	}
-	
+
 	.content {
-	
+
 		flex: 5;
 		height: 100%;
-	
+
 	}
 
 	.footer-text {
