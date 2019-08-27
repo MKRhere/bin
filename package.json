@@ -4,7 +4,7 @@
 	"description": "A tiny, sensible hastebin alternative",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js",
+		"start": "node -r dotenv/config app.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -24,6 +24,7 @@
 	},
 	"homepage": "https://github.com/codefeathers/bin#readme",
 	"dependencies": {
+		"dotenv": "^8.1.0",
 		"express": "^4.16.3",
 		"helmet": "^3.13.0",
 		"highlight.js": "^9.12.0",
