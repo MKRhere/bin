@@ -6,7 +6,6 @@ module.exports = mongoose => {
 		hash: {
 			type: String,
 			unique: true,
-			required: true
 		},
 		content: {
 			type: String,
