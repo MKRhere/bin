@@ -6,7 +6,7 @@ module.exports = () => {
 
 	mongoose.connect(
 		connectionString,
-		{ useNewUrlParser: true }
+		{ useNewUrlParser: true, useCreateIndex: true }
 	);
 
 	const models = require("../model")(mongoose);
